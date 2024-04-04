@@ -118,10 +118,10 @@
     </table>
 
     <h3>강연 정보 추가/수정</h3>
-    <input type=<td>"text"</td> id="titleInput" placeholder="Title">
+    <input type="text" id="titleInput" placeholder="Title">
     <input type="date" id="dateInput">
     <input type="text" id="speakerInput" placeholder="Speaker">
-    <input type="file" id="slideInput" placeholder="File Upload">
+    <input type="text" id="slideInput" placeholder="Slide URL">
     <button onclick="addOrUpdateLecture()">추가/수정</button>
 
     <script>
@@ -139,6 +139,33 @@
             newRow.insertCell(2).innerText = speaker;
             var slideCell = newRow.insertCell(3);
             slideCell.innerHTML = '<a href="' + slide + '" target="_blank">slide (png)</a>';
+
+            // 강연 정보를 로컬 저장소에 저장
+            saveLectureToLocalStorage(title, date, speaker, slide);
+        }
+        
+        function saveLectureToLocalStorage(title, date, speaker, slide) {
+            var lectures = JSON.parse(localStorage.getItem('lectures') || '[]'); // 기존 강연 정보 읽기
+            lectures.push({title: title, date: date, speaker: speaker, slide: slide}); // 새 강연 정보 추가
+            localStorage.setItem('lectures', JSON.stringify(lectures)); // 강연 정보 저장
+        }
+
+        function loadLecturesFromLocalStorage() {
+            var lectures = JSON.parse(localStorage.getItem('lectures') || '[]');
+            var table = document.getElementById('lectureTable');
+            lectures.forEach(function(lecture) {
+                var newRow = table.insertRow(-1);
+                newRow.insertCell(0).innerText = lecture.title;
+                newRow.insertCell(1).innerText = lecture.date;
+                newRow.insertCell(2).innerText = lecture.speaker;
+                var slideCell = newRow.insertCell(3);
+                slideCell.innerHTML = '<a href="' + lecture.slide + '" target="_blank">slide (png)</a>';
+            });
+        }
+
+        // 페이지가 로드될 때 저장된 강연 정보를 로드
+        window.onload = function() {
+            loadLecturesFromLocalStorage();
         }
     </script>
 </body>
