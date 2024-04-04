@@ -126,17 +126,28 @@
                                 <td>N/A</td>
                         </tr>
                     </tbody>
-<div id="pagination"></div>
+
+                </table>
+                <div id="pagination"></div>
 
 <script>
 $(document).ready(function(){
     var rowsToShow = 5;
-    var rowsTotal = $('.u-full-width tbody tr').length;
+    var rows = $('.u-full-width tbody tr').toArray();
+    rows.sort(function(a, b) {
+        var dateA = $(a).find('td:nth-child(2)').text();
+        var dateB = $(b).find('td:nth-child(2)').text();
+        return new Date(dateA) - new Date(dateB);
+    });
+    $('.u-full-width tbody').empty().append(rows);
+
+    var rowsTotal = rows.length;
     var numPages = Math.ceil(rowsTotal / rowsToShow);
 
     $('.u-full-width tbody tr').hide();
     $('.u-full-width tbody tr').slice(0, rowsToShow).show();
 
+    $('#pagination').empty();
     for(var i = 0; i < numPages; i++) {
         var pageNum = i + 1;
         $('#pagination').append('<a href="#" rel="' + i + '">' + pageNum + '</a> ');
@@ -146,17 +157,16 @@ $(document).ready(function(){
     $('#pagination a').bind('click', function(){
         $('#pagination a').removeClass('active');
         $(this).addClass('active');
-        
+
         var currPage = $(this).attr('rel');
         var startItem = currPage * rowsToShow;
         var endItem = startItem + rowsToShow;
-        
+
         $('.u-full-width tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
         css('display', 'table-row').animate({opacity:1}, 300);
     });
 });
 </script>
-                </table>
             </div>
         </div>
     </div>
