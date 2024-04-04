@@ -109,81 +109,18 @@
                         </tr>
                         <tr>
                             <td>HOLDER'S INEQUALITY </td>
-                            <td>2024.03.25</td>
+                            <td>2024.03.11</td>
                             <td>Lee Junyub</td>
+                                <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>TROPICAL ALGEBRA-FTA OVER TROPICAL ALGEBRA </td>
+                            <td>2024.03.18</td>
+                            <td>Jo Hanjin</td>
                                 <td>N/A</td>
                         </tr>
                     </tbody>
 
-                
-<html>
-<head>
-    <title>강연 정보 수정하기</title>
-</head>
-<body>
-    <table id="lectureTable">
-        <tr>
-            <th>Title</th>
-            <th>Date</th>
-            <th>Speaker</th>
-            <th>Slide</th>
-        </tr>
-        <!-- 기존 행은 여기에 위치 -->
-    </table>
-
-    <h3>강연 정보 추가/수정</h3>
-    <input type="text" id="titleInput" placeholder="Title">
-    <input type="date" id="dateInput">
-    <input type="text" id="speakerInput" placeholder="Speaker">
-    <input type="text" id="slideInput" placeholder="Slide URL">
-    <button onclick="addOrUpdateLecture()">추가/수정</button>
-
-    <script>
-        function addOrUpdateLecture() {
-            var title = document.getElementById('titleInput').value;
-            var date = document.getElementById('dateInput').value;
-            var speaker = document.getElementById('speakerInput').value;
-            var slide = document.getElementById('slideInput').value;
-
-            // 강연 정보를 테이블에 추가
-            var table = document.getElementById('lectureTable');
-            var newRow = table.insertRow(-1); // 테이블의 마지막에 새 행 추가
-            newRow.insertCell(0).innerText = title;
-            newRow.insertCell(1).innerText = date;
-            newRow.insertCell(2).innerText = speaker;
-            var slideCell = newRow.insertCell(3);
-            slideCell.innerHTML = '<a href="' + slide + '" target="_blank">slide (png)</a>';
-
-            // 강연 정보를 로컬 저장소에 저장
-            saveLectureToLocalStorage(title, date, speaker, slide);
-        }
-        
-        function saveLectureToLocalStorage(title, date, speaker, slide) {
-            var lectures = JSON.parse(localStorage.getItem('lectures') || '[]'); // 기존 강연 정보 읽기
-            lectures.push({title: title, date: date, speaker: speaker, slide: slide}); // 새 강연 정보 추가
-            localStorage.setItem('lectures', JSON.stringify(lectures)); // 강연 정보 저장
-        }
-
-        function loadLecturesFromLocalStorage() {
-            var lectures = JSON.parse(localStorage.getItem('lectures') || '[]');
-            var table = document.getElementById('lectureTable');
-            lectures.forEach(function(lecture) {
-                var newRow = table.insertRow(-1);
-                newRow.insertCell(0).innerText = lecture.title;
-                newRow.insertCell(1).innerText = lecture.date;
-                newRow.insertCell(2).innerText = lecture.speaker;
-                var slideCell = newRow.insertCell(3);
-                slideCell.innerHTML = '<a href="' + lecture.slide + '" target="_blank">slide (png)</a>';
-            });
-        }
-
-        // 페이지가 로드될 때 저장된 강연 정보를 로드
-        window.onload = function() {
-            loadLecturesFromLocalStorage();
-        }
-    </script>
-</body>
-</html>
                 </table>
             </div>
         </div>
