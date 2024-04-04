@@ -137,7 +137,7 @@ $(document).ready(function(){
     rows.sort(function(a, b) {
         var dateA = $(a).find('td:nth-child(2)').text();
         var dateB = $(b).find('td:nth-child(2)').text();
-        return new Date(dateA) - new Date(dateB);
+        return new Date(dateB) - new Date(dateA);
     });
     $('.u-full-width tbody').empty().append(rows);
 
