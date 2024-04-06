@@ -177,3 +177,66 @@ $(document).ready(function(){
 </body>
 
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>INU Math Club</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="icon" type="image/png" href="images\INU_UI_CI2\png\휘장_png\휘장.png">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="one-half column" style="margin-top: 25%">
+                <h3>Upload Files of a Presentation</h3>
+                <input type="text" id="presentation_title" placeholder="Presentation Title">
+                <input type="date" id="presentation_date">
+                <input type="text" id="speaker_name" placeholder="Speaker Name">
+                <input type="file" id="reference_files" multiple="multiple" />
+                <button id="upload_button">Upload Presentation</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById("upload_button").onclick = function() {
+            const title = document.getElementById("presentation_title").value;
+            const date = document.getElementById("presentation_date").value;
+            const speaker = document.getElementById("speaker_name").value;
+            const files = document.getElementById("reference_files").files;
+
+            if (!title || !date || !speaker || files.length === 0) {
+                alert("Please fill out all fields and select files.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('title', title);
+            formData.append('date', date);
+            formData.append('speaker', speaker);
+            for (const file of files) {
+                formData.append('files[]', file, file.name);
+            }
+
+            fetch('/reference', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                alert("Presentation uploaded successfully!");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("An error occurred while uploading the presentation.");
+            });
+        };
+    </script>
+</body>
+</html>
