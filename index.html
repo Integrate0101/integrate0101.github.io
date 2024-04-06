@@ -33,102 +33,18 @@
 
     <!-- Primary Page Layout
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <div class="container">
+        <div class="container">
         <div class="row">
             <div class="one-half column" style="margin-top: 25%">
-                <h3>INU Math Club</h3>
+                <h3>Upload Files of a Presentation</h3>
+                <input type="text" id="presentation_title" placeholder="Presentation Title">
+                <input type="date" id="presentation_date">
+                <input type="text" id="speaker_name" placeholder="Speaker Name">
+                <input type="file" id="reference_files" multiple="multiple" />
+                <button id="upload_button">Upload Presentation</button>
             </div>
         </div>
-
-        <div class="presentations_list">
-            <h3>Presentations list with references</h3>
-            <div class="2024_year">
-                <h2>2024</h2>
-                <table class="u-full-width">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Date</th>
-                            <th>Speaker</th>
-                            <th>References</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!--
-                        <tr>
-                            <td>Title</td>
-                            <td>YYYY.MM.DD</td>
-                            <td>Speaker</td>
-                            <td>
-                                <a href="locale" target="_blank">slide</a>
-                                |
-                                <a href='locale' target="_blank">slide with writing</a>
-                            </td>
-                        </tr>
-                        -->
-                        <tr>
-                            <td>Combinatoric Problems</td>
-                            <td>2024.01.10</td>
-                            <td>Lee Junyub</td>
-                            <td>
-                                <a href='References\Combinatoric Problems_2024.01.10_Lee Junyub\Combinatoric-problems_with_writing.pdf' target="_blank">slide (pdf)</a>
-                                <!--
-                                <button onclick="location.href='References\Combinatoric Problems_2024.01.10_Lee Junyub\Combinatoric-problems_with_writing.pdf'" style="margin: auto">
-                                    slide with writing
-                                </button>
-                                -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>N/A</td>
-                            <td>2024.01.19</td>
-                            <td>Jo Hanjin</td>
-                            <td>N/A</td>
-                        </tr>
-                        <tr>
-                            <td>DOWN WITH DETERMINANT! (1/2)</td>
-                            <td>2024.01.26</td>
-                            <td>Kwon Hyukmo</td>
-                            <td>
-                                <a href="References\down with determinant_2024.01.26-2024.02.02_Kwon Hyukmo\Lecture - DwD.png" target="_blank">slide (png)</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>DOWN WITH DETERMINANT! (2/2)</td>
-                            <td>2024.02.02</td>
-                            <td>Kwon Hyukmo</td>
-                            <td>
-                                <a href="References\down with determinant_2024.01.26-2024.02.02_Kwon Hyukmo\Lecture - DwD.pdf" target="_blank">slide (png)</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>THE GENERALIZED RIEMAN INTEGRAL </td>
-                            <td>2024.02.23</td>
-                            <td>Jo Hyenosu</td>
-                                <td>N/A</td>
-                        </tr>
-                        <tr>
-                            <td>HOLDER'S INEQUALITY </td>
-                            <td>2024.03.11</td>
-                            <td>Lee Junyub</td>
-                                <td>N/A</td>
-                        </tr>
-                        <tr>
-                            <td>TROPICAL ALGEBRA-FTA OVER TROPICAL ALGEBRA </td>
-                            <td>2024.03.18</td>
-                            <td>Jo Hanjin</td>
-                                <td>N/A</td>
-                        </tr>
-                        <tr>
-                            <td>Learning Wolfram Mathmatica(1/2) </td>
-                            <td>2024.03.29</td>
-                            <td>Kwon Hyukmo</td>
-                                <td>N/A</td>
-                        </tr>
-                    </tbody>
-
-                </table>
-                <div id="pagination"></div>
+    </div>
 
 <script>
 $(document).ready(function(){
@@ -167,43 +83,8 @@ $(document).ready(function(){
     });
 });
 </script>
-            </div>
-        </div>
-    </div>
 
-
-    <!-- End Document
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
-
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>INU Math Club</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/skeleton.css">
-    <link rel="icon" type="image/png" href="images\INU_UI_CI2\png\휘장_png\휘장.png">
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="one-half column" style="margin-top: 25%">
-                <h3>Upload Files of a Presentation</h3>
-                <input type="text" id="presentation_title" placeholder="Presentation Title">
-                <input type="date" id="presentation_date">
-                <input type="text" id="speaker_name" placeholder="Speaker Name">
-                <input type="file" id="reference_files" multiple="multiple" />
-                <button id="upload_button">Upload Presentation</button>
-            </div>
-        </div>
-    </div>
-
-    <script type="text/javascript">
+ <script type="text/javascript">
         document.getElementById("upload_button").onclick = function() {
             const title = document.getElementById("presentation_title").value;
             const date = document.getElementById("presentation_date").value;
@@ -238,5 +119,13 @@ $(document).ready(function(){
             });
         };
     </script>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- End Document
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+   
 </body>
 </html>
